@@ -14,6 +14,11 @@ import reducer from './reducers.jsx';
 
 let store = createStore(reducer);
 
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 const App = ({children}) =>
     (
         <MuiThemeProvider>
