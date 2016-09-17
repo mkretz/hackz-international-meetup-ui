@@ -1,0 +1,16 @@
+{
+  "users": [
+    { "tags": [0,1] },
+    { "tags": [2,3] }
+  ],
+  "tags": [
+    {"en": "football", "de": "fussball", "fr":"fussball" },
+    {"en": "hockey", "de": "hockey", "fr":"hockey" },
+    {"en": "radfahren", "de": "radfahren", "fr":"radfahren" }
+  ],
+  "events": [
+    { "tag": 0, "place": "Zurich, Technopark", "time": 1474119564 },
+    { "tag": 0, "place": "Zurich, Hardturm", "time": 1474119564 },
+    { "tag": 0, "place": "Zurich, Oerlikon", "time": 1474119564 }
+  ]
+}

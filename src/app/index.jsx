@@ -6,6 +6,7 @@ import {FlatButton} from 'material-ui';
 import Navigation from './navigation/navigation.jsx';
 import Home from './home/home.jsx';
 import Profile from './profile/profile.jsx';
+import TagSelect from './newevent/tagselect.jsx';
 import NewEvent from './newevent/newevent.jsx';
 import './main.scss';
 
@@ -41,7 +42,8 @@ let routes = (
             <Route path="/home" component={Home}/>
             <Route path="/profile" component={Profile}/>
         </Route>
-        <Route path="/newevent" component={NewEvent}/>
+        <Route path="/tagselect" component={TagSelect}/>
+        <Route path="/newevent/:tagID" component={NewEvent}/>
     </Route>
   </Router>
 );

@@ -20,9 +20,9 @@ var EventList = React.createClass({
     this.bindAsArray(firebase.database().ref('events'), 'events');
   },
   render: function() {
-    var eventNodes = this.state.events.map(function(event) {
+    var eventNodes = this.state.events.map(function(event, i, events) {
         return (
-          <Event key={event.$id} {...event} tag={this.state.tags[event.tag].en} />
+          <Event key={event['.key']} {...event} tag={this.state.tags[event.tag].en} />
         );
       }, this);
     return (
