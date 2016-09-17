@@ -2,6 +2,10 @@ import React from 'react';
 import AutoCompleteTags from '../components/AutoCompleteTags.jsx';
 import TagCloud from '../components/TagCloud.jsx';
 
+import GoogleTranslation from '../components/GoogleTranslation.jsx';
+
+
+
 
 import Chip from 'material-ui/Chip';
 
@@ -67,6 +71,7 @@ class ChipExampleArray extends React.Component {
 
 import TextField from 'material-ui/TextField';
 
+import FlatButton from 'material-ui/FlatButton';
 
 const Profile = () =>
     (
@@ -74,6 +79,7 @@ const Profile = () =>
           <AutoCompleteTags />
           <ChipExampleArray />
           <TagCloud />
+          <GoogleTranslation />
         </div>
 
     );
