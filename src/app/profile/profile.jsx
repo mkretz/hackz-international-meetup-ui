@@ -4,78 +4,61 @@ import TagCloud from '../components/TagCloud.jsx';
 
 
 import Chip from 'material-ui/Chip';
+import ReactFireMixin from 'reactfire';
+import firebase from 'firebase';
 
-/**
- * An example of rendering multiple Chips from an array of values. Deleting a chip removes it from the array.
- * Note that since no `onTouchTap` property is defined, the Chip can be focused, but does not gain depth
- * while clicked or touched.
- */
-class ChipExampleArray extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {chipData: [
-      {key: 0, label: 'Fussball'},
-      {key: 1, label: 'Tennis'},
-      {key: 2, label: 'Web Development'},
-      {key: 3, label: 'Fahhrad reparieren'},
-    ]};
-    this.styles = {
-      chip: {
-        margin: 4,
-      },
-      wrapper: {
-        display: 'flex',
-        flexWrap: 'wrap',
-      },
+const ChipArray = React.createClass({
+  mixins: [ReactFireMixin],
+  getInitialState: function() {
+    return {
+      profile: undefined,
+      tags: []
     };
-  }
+  },
 
-  handleRequestDelete = (key) => {
-    if (key === 3) {
-      alert('Why would you want to delete React?! :)');
-      return;
-    }
+  componentWillMount: function() {
+    this.bindAsArray(firebase.database().ref('tags'), 'tags');
+    this.bindAsObject(firebase.database().ref('users/0'), 'profile');
+  },
 
-    this.chipData = this.state.chipData;
-    const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
-    this.chipData.splice(chipToDelete, 1);
-    this.setState({chipData: this.chipData});
-  };
+  handleRequestDelete : function (key) {
+    firebase.database().ref('users/0/tags/' + key).remove();
+  },
 
-  renderChip(data) {
+  renderChip: function (data) {
     return (
-      <Chip
-        key={data.key}
-        onRequestDelete={() => this.handleRequestDelete(data.key)}
-        style={this.styles.chip}
-      >
-        {data.label}
-      </Chip>
+        <Chip
+            key={this.state.profile.tags.indexOf(data)}
+            style={{margin: 4}}
+            onRequestDelete={() => this.handleRequestDelete(this.state.profile.tags.indexOf(data))}
+        >
+          {this.state.tags[data].en}
+        </Chip>
+    );
+  },
+
+  render: function () {
+    return (
+        <div style={{display: 'flex', flexWrap: 'wrap'}}>
+          {(this.state.profile && this.state.profile.tags ? this.state.profile.tags.map(this.renderChip, this) : '')}
+        </div>
     );
   }
 
-  render() {
+});
+
+const Profile = React.createClass({
+
+
+  render: function () {
     return (
-      <div style={this.styles.wrapper}>
-        {this.state.chipData.map(this.renderChip, this)}
-      </div>
-    );
-  }
-}
-
-
-import TextField from 'material-ui/TextField';
-
-
-const Profile = () =>
-    (
         <div>
           <AutoCompleteTags />
-          <ChipExampleArray />
+          <ChipArray />
           <TagCloud />
         </div>
-
-    );
+      );
+    }
+});
 
 export default Profile;
