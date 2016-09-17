@@ -2,11 +2,7 @@ import React from 'react';
 import AutoCompleteTags from '../components/AutoCompleteTags.jsx';
 import TagCloud from '../components/TagCloud.jsx';
 
-import TextField from 'material-ui/TextField';
-import TimePicker from 'material-ui/TimePicker';
-import DatePicker from 'material-ui/DatePicker';
-import RaisedButton from 'material-ui/RaisedButton';
-
+import {TextField, TimePicker, DatePicker, RaisedButton} from 'material-ui'
 import { withRouter } from 'react-router'
 
 const buttonStyle = {
