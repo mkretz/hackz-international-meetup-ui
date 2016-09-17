@@ -1,12 +1,17 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Router, Route, browserHistory} from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {FlatButton} from 'material-ui';
+import './main.scss';
 
 const App = () =>
     (
-        <div>
-            Hello world hackz!
-        </div>
+        <MuiThemeProvider>
+            <div>
+                <FlatButton label="Hello HackZurich" primary={true} />
+            </div>
+        </MuiThemeProvider>
     );
 
 let routes = (
