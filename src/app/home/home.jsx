@@ -18,6 +18,8 @@ import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
 
+import { withRouter } from 'react-router'
+
 
 
 
@@ -38,12 +40,15 @@ const style = {
 
 
 
-const Home = () =>
+const Home = (props) =>
     (
 
     <div>
 
-        <FloatingActionButton style={{float:'right'}}>
+        <FloatingActionButton
+         style={{position: 'absolute', bottom:'50px', right:'50px'}}
+         onClick={() => {props.router.push('/newevent')}}
+        >
           <ContentAdd />
         </FloatingActionButton>
 
@@ -67,8 +72,8 @@ const Home = () =>
             secondaryTextLines={2}
           />
         </List>
-        
+
     </div>
     );
 
-export default Home;
+export default withRouter(Home);

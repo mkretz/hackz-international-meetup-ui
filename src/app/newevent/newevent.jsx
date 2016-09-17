@@ -7,11 +7,13 @@ import TimePicker from 'material-ui/TimePicker';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import { withRouter } from 'react-router'
+
 const buttonStyle = {
   margin: 12,
 };
 
-const NewEvent = () =>
+const NewEvent = (props) =>
     (
         <div>
           <TextField
@@ -25,10 +27,16 @@ const NewEvent = () =>
           <AutoCompleteTags />
           <TagCloud />
 
-          <RaisedButton label="Submit" primary={true} style={buttonStyle} />
-          <RaisedButton label="Cancel" secondary={true} style={buttonStyle} />
+          <RaisedButton
+            label="Submit" primary={true} style={buttonStyle}
+            onClick={() => {props.router.push('/')}}
+          />
+          <RaisedButton
+            label="Cancel" secondary={true} style={buttonStyle}
+            onClick={() => {props.router.push('/')}}
+          />
         </div>
 
     );
 
-export default NewEvent;
+export default withRouter(NewEvent);
