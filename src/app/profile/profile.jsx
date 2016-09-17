@@ -52,10 +52,37 @@ const ChipArray = React.createClass({
 });
 
 const Profile = React.createClass({
+
+  getInitialState: function() {
+    return {
+      userLang: "en",
+    };
+  },
+
+    getTranslation: function(originalWord, oldLanguage, newLanguage ) {
+     return("bla")},
+
+  storeTag: function(chosenRequest, index) {// store tag to user profile + save new tags
+   if (index === -1){
+	   var en = this.getTranslation(chosenRequest, this.userLang, "en");
+	   var fr = this.getTranslation(chosenRequest, this.userLang, "fr");
+	   var de = this.getTranslation(chosenRequest, this.userLang, "de");
+
+	index = firebase.database().ref('tags').push({
+    	     en: en, fr: fr, de: de
+  	   });
+        }
+
+     //firebase.database().ref('users/0/tags').push({ 
+	//  index: index
+     //});
+  },
+
+
   render: function () {
     return (
         <div>
-          <AutoCompleteTags />
+          <AutoCompleteTags onNewRequest={this.storeTag}/>
           <ChipArray />
           <TagCloud />
           <GoogleTranslation />
