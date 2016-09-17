@@ -28,7 +28,6 @@ class AutoCompleteTags extends React.Component {
           hintText="Tag ..."
           dataSource={this.state.dataSource}
           onUpdateInput={this.handleUpdateInput}
-          fullWidth={true}
         />
       </div>
     );
