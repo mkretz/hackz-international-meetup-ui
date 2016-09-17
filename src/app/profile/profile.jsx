@@ -71,7 +71,7 @@ import TextField from 'material-ui/TextField';
 const Profile = () =>
     (
         <div>
-          <AutoCompleteTags />
+          <AutoCompleteTags />  //onNewRequest={this.veryCoolOwnFunction(chosenReq, index)}/>
           <ChipExampleArray />
           <TagCloud />
         </div>
