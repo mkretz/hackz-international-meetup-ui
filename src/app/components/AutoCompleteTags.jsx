@@ -48,37 +48,4 @@ const AutoCompleteTags = React.createClass({
 
 });
 
-class AutoCompleteTagsi extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataSource: [],
-    };
-  }
-
-  handleUpdateInput = (value) => {
-    this.setState({
-      dataSource: [
-        value,
-        value + value,
-        value + value + value,
-      ],
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <AutoComplete
-          hintText="Tag ..."
-          dataSource={this.state.dataSource}
-          onUpdateInput={this.handleUpdateInput}
-        />
-      </div>
-    );
-  }
-}
-
 export default AutoCompleteTags;
