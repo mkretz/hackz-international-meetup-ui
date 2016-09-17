@@ -3,48 +3,19 @@ import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-
-import {List, ListItem} from 'material-ui/List';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import Divider from 'material-ui/Divider';
-import ActionInfo from 'material-ui/svg-icons/action/info';
-
-
-
-import Subheader from 'material-ui/Subheader';
-import Checkbox from 'material-ui/Checkbox';
-import Toggle from 'material-ui/Toggle';
+import EventList from './eventList.jsx';
 
 import { withRouter } from 'react-router'
 
 
-
-
-
-const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-};
-
-
-
-
-const style = {
-  marginRight: 20,
-};
-
-
+const events = [
+  {id: 1, tag: 'Fussball', time: '1293683278', place:'Technopark, Zurich'},
+  {id: 2, tag: 'Fussball', time: '1293784278', place:'Technopark, Zurich'},
+]
 
 const Home = (props) =>
     (
-
     <div>
-
         <FloatingActionButton
          style={{position: 'absolute', bottom:'50px', right:'50px'}}
          onClick={() => {props.router.push('/newevent')}}
@@ -52,27 +23,7 @@ const Home = (props) =>
           <ContentAdd />
         </FloatingActionButton>
 
-        <List>
-          <ListItem
-            primaryText="Fussball"
-            secondaryText={
-            <p>
-              25.5.2019 <br/> Technopark, Zurich
-            </p>
-            }
-            secondaryTextLines={2}
-          />
-          <ListItem
-              primaryText="Fussball"
-              secondaryText={
-              <p>
-                25.5.2019 <br/> Technopark, Zurich
-              </p>
-            }
-            secondaryTextLines={2}
-          />
-        </List>
-
+        <EventList events={events} />
     </div>
     );
 
