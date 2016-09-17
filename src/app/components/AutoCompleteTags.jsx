@@ -42,6 +42,7 @@ const AutoCompleteTags = React.createClass({
               hintText="Tag ..."
               dataSource={this.mapAutomcompleteOptions()}
               dataSourceConfig={{text: 'label', value: 'value'}}
+	      onNewRequest={this.props.onNewRequest}
           />
         </div>
     );
