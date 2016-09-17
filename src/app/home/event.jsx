@@ -8,7 +8,7 @@ class Event extends React.Component {
     var date = new Date(this.props.time*1000)
     return (
       <ListItem
-        primaryText={this.props.tag}
+        primaryText={this.props.tags[this.props.tag].en}
         secondaryText={
           <p>
             {date.toLocaleString()} <br/> {this.props.place}

@@ -8,9 +8,9 @@ class EventList extends React.Component {
   render() {
     var eventNodes = this.props.events.map(function(event) {
         return (
-          <Event key={event.id} {...event} />
+          <Event key={event.$id} tags={this.props.tags} {...event} />
         );
-      });
+      }, this);
     return (
       <List>
         {eventNodes}

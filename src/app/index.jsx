@@ -9,6 +9,16 @@ import Profile from './profile/profile.jsx';
 import NewEvent from './newevent/newevent.jsx';
 import './main.scss';
 
+import firebase from 'firebase';
+var config = {
+  apiKey: "AIzaSyDno3-cRZL-OE_-PjW_WERTIq0vjYSTkzM",
+  authDomain: "international-meetup.firebaseapp.com",
+  databaseURL: "https://international-meetup.firebaseio.com",
+  storageBucket: "international-meetup.appspot.com",
+  messagingSenderId: "1075290029033"
+};
+firebase.initializeApp(config);
+
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 import injectTapEventPlugin from 'react-tap-event-plugin';
