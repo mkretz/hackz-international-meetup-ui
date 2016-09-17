@@ -23,6 +23,7 @@
   "homepage": "https://github.com/mkretz/hackz-international-meetup-ui#readme",
   "dependencies": {
     "firebase": "^3.4.0",
+    "lodash": "^4.15.0",
     "material-ui": "^0.15.4",
     "react": "^15.3.0",
     "react-d3-cloud": "^0.1.0",
