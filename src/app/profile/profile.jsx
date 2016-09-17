@@ -52,9 +52,6 @@ const ChipArray = React.createClass({
 });
 
 const Profile = React.createClass({
-
-import FlatButton from 'material-ui/FlatButton';
-
   render: function () {
     return (
         <div>
