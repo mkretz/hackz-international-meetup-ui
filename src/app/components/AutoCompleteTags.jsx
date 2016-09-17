@@ -20,7 +20,7 @@ const AutoCompleteTags = React.createClass({
   },
 
   mapAutomcompleteOptions: function () {
-    return _.map(this.state.tags,(tag) => tag.en);
+    return _.map(this.state.tags,(tag) => {return {label: tag.en, value: tag}});
   },
 
   alreadyUsed: function (tag) {
@@ -41,6 +41,7 @@ const AutoCompleteTags = React.createClass({
           <AutoComplete
               hintText="Tag ..."
               dataSource={this.mapAutomcompleteOptions()}
+              dataSourceConfig={{text: 'label', value: 'value'}}
           />
         </div>
     );
