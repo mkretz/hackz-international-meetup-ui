@@ -2,6 +2,10 @@ import React from 'react';
 import AutoCompleteTags from '../components/AutoCompleteTags.jsx';
 import TagCloud from '../components/TagCloud.jsx';
 
+import GoogleTranslation from '../components/GoogleTranslation.jsx';
+
+
+
 
 import Chip from 'material-ui/Chip';
 import ReactFireMixin from 'reactfire';
@@ -49,6 +53,7 @@ const ChipArray = React.createClass({
 
 const Profile = React.createClass({
 
+import FlatButton from 'material-ui/FlatButton';
 
   render: function () {
     return (
@@ -56,6 +61,7 @@ const Profile = React.createClass({
           <AutoCompleteTags />
           <ChipArray />
           <TagCloud />
+          <GoogleTranslation />
         </div>
       );
     }
