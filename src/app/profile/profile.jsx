@@ -1,39 +1,7 @@
 import React from 'react';
-import AutoComplete from 'material-ui/AutoComplete';
+import AutoCompleteTags from '../components/AutoCompleteTags.jsx';
+import TagCloud from '../components/TagCloud.jsx';
 
-class AutoCompleteExampleSimple extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataSource: [],
-    };
-  }
-
-  handleUpdateInput = (value) => {
-    this.setState({
-      dataSource: [
-        value,
-        value + value,
-        value + value + value,
-      ],
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <AutoComplete
-          hintText="Type anything"
-          dataSource={this.state.dataSource}
-          onUpdateInput={this.handleUpdateInput}
-          fullWidth={true}
-        />
-      </div>
-    );
-  }
-}
 
 import Chip from 'material-ui/Chip';
 
@@ -97,32 +65,15 @@ class ChipExampleArray extends React.Component {
 }
 
 
-import WordCloud from 'react-d3-cloud'
+import TextField from 'material-ui/TextField';
 
-const data = {
-  Fussball: 10,
-  Tennis: 2,
-  Wandern: 20,
-  Kochen: 12,
-  FahrradReparieren: 8,
-  Fussball2: 10,
-  Tennis2: 1,
-  Wandern2: 13,
-  Kochen2: 10,
-  FahrradReparieren3: 8,
-  Fussball3: 16,
-  Tennis3: 19,
-  Wandern3: 2,
-  Kochen3: 1,
-  FahrradReparieren3: 8,
-}
 
 const Profile = () =>
     (
         <div>
-          <AutoCompleteExampleSimple />
+          <AutoCompleteTags />
           <ChipExampleArray />
-          <WordCloud data={data} />
+          <TagCloud />
         </div>
 
     );
