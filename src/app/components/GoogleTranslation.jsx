@@ -23,14 +23,10 @@ class GoogleTranslation extends React.Component {
 
 
   test = function () {
-
   var languages = ["en", "it", "fr"];
   var words = ["Grenze", "Schichte", "Handy"];
-
   var text = '';
-
   var ll, ww;
-
   var tmp;
 
   for (ll = 0; ll < languages.length; ll++) {
@@ -39,7 +35,6 @@ class GoogleTranslation extends React.Component {
       text += "-----" + tmp.data.translations[0].translatedText;
       }
   }
-
       return text;
   };
 
