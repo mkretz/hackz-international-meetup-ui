@@ -1,6 +1,6 @@
 import React from 'react';
 import AutoCompleteTags from '../components/AutoCompleteTags.jsx';
-import TagCloud from '../components/TagCloud.jsx';
+import TagSelect from '../components/TagSelect.jsx'
 
 import ReactFireMixin from 'reactfire'
 import firebase from 'firebase'
@@ -29,35 +29,43 @@ var NewEvent = React.createClass({
     firebase.database().ref('events').push({place: this.state.place, tag: this.state.tag, time: time.getTime()/1000.})
     this.props.router.push('/')
   },
+  handleClick: function(key) {
+    this.setState({tag: key})
+  },
   render: function() {
-    return (
-        <div>
-          <TextField
-            hintText="Where ..."
-            onChange={(e) => this.setState({place: e.target.value})}
-          />
-          <DatePicker
-            hintText="Date ..."
-            autoOk={true}
-            onChange={(e, date) => this.setState({date: date})}
-          />
-          <TimePicker
-            format="24hr"
-            hintText="Time ..."
-            autoOk={true}
-            onChange={(e, date) => this.setState({time: date})}
-          />
+    if (this.state.tag === undefined) {
+      return (<TagSelect handleClick={this.handleClick} />)
+    }
+    else {
+      return (
+          <div>
+            <TextField
+              hintText="Where ..."
+              onChange={(e) => this.setState({place: e.target.value})}
+            />
+            <DatePicker
+              hintText="Date ..."
+              autoOk={true}
+              onChange={(e, date) => this.setState({date: date})}
+            />
+            <TimePicker
+              format="24hr"
+              hintText="Time ..."
+              autoOk={true}
+              onChange={(e, date) => this.setState({time: date})}
+            />
 
-          <RaisedButton
-            label="Submit" primary={true} style={buttonStyle}
-            onClick={() => {this.addEvent()}}
-          />
-          <RaisedButton
-            label="Cancel" secondary={true} style={buttonStyle}
-            onClick={() => {this.props.router.push('/')}}
-          />
-        </div>
-      )
+            <RaisedButton
+              label="Submit" primary={true} style={buttonStyle}
+              onClick={() => {this.addEvent()}}
+            />
+            <RaisedButton
+              label="Cancel" secondary={true} style={buttonStyle}
+              onClick={() => {this.props.router.push('/')}}
+            />
+          </div>
+        )
+      }
     }
 })
 

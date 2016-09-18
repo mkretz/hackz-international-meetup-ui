@@ -52,8 +52,8 @@ const AutoCompleteTags = React.createClass({
   storeTag: function(chosenRequest, index) {// store tag to user profile + save new tags
    if (index === -1){
   	  var en = chosenRequest;
-  	  var fr = this.getTranslation(chosenRequest, this.state.userLang, "fr");
-  	  var de = this.getTranslation(chosenRequest, this.state.userLang, "de");
+  	  var fr = this.getTranslation(chosenRequest, this.userLang, "fr");
+  	  var de = this.getTranslation(chosenRequest, this.userLang, "de");
 
     	var ref = firebase.database().ref('tags').push({
         	     en: en, fr: fr, de: de
