@@ -1,8 +1,8 @@
 import React from 'react';
 import AutoCompleteTags from '../components/AutoCompleteTags.jsx';
-import TagCloud from '../components/TagCloud.jsx';
 
 import GoogleTranslation from '../components/GoogleTranslation.jsx';
+import TagSelect from '../components/TagSelect.jsx';
 
 
 
@@ -66,6 +66,9 @@ const Profile = React.createClass({
       userLang: "en",
     };
   },
+  handleClick: function(key) {
+    firebase.database().ref('users/0/tags').push(key)
+  },
 
 
 
@@ -74,7 +77,7 @@ const Profile = React.createClass({
         <div>
           <AutoCompleteTags />
           <ChipArray />
-          <TagCloud />
+          <TagSelect handleClick={this.handleClick} />
           <GoogleTranslation />
         </div>
       );

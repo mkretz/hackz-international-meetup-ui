@@ -14,7 +14,7 @@ var Home = React.createClass({
       <div>
           <FloatingActionButton
            style={{position: 'absolute', bottom:'50px', right:'50px'}}
-           onClick={() => {this.props.router.push('/tagselect')}}
+           onClick={() => {this.props.router.push('/newevent')}}
           >
             <ContentAdd />
           </FloatingActionButton>
