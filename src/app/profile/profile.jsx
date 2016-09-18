@@ -116,6 +116,7 @@ const Profile = React.createClass({
   render: function () {
     return (
         <div>
+          <h3 style={{float:'right'}}>Input all tags in English!</h3>
           <AutoCompleteTags  onNewRequest={this.storeTag} />
           <ChipArray />
           <TagSelect handleClick={this.handleClick} />
