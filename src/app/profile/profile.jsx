@@ -44,12 +44,13 @@ const ChipArray = React.createClass({
   render: function () {
     return (
         <div style={{display: 'flex', flexWrap: 'wrap'}}>
-          {(this.state.profile && this.state.profile.tags ? this.state.profile.tags.map(this.renderChip, this) : '')}
+       
         </div>
     );
   }
 
 });
+
 
 const Profile = React.createClass({
 
@@ -59,21 +60,46 @@ const Profile = React.createClass({
     };
   },
 
-    getTranslation: function(originalWord, oldLanguage, newLanguage ) {
-     return("bla")},
+
+ httpGet: function (theUrl) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open( "GET", theUrl, false );
+      xmlHttp.send( null );
+      return (xmlHttp.responseText)
+  },
+
+  getTranslation: function (originalWorld,sourceLanguage,targetLanguage) {
+      var APIKey = "AIzaSyBOS5Rpbx34LOyaWb5tKQ3aXKwaNVggdPs";
+      var googleTranslatorString = "https://www.googleapis.com/language/translate/v2?key=" + APIKey + "&q=" + originalWorld + "&source=" + sourceLanguage + "&target=" + targetLanguage;
+
+       var asd = this.httpGet(googleTranslatorString);
+       var tmp = JSON.parse(asd);
+       return (tmp.data.translations[0].translatedText);
+
+
+  },
+
+
+
+  
+
+
+//function(originalWord, oldLanguage, newLanguage ) {
+//     return("bla")},
 
   storeTag: function(chosenRequest, index) {// store tag to user profile + save new tags
    if (index === -1){
-	   var en = this.getTranslation(chosenRequest, this.userLang, "en");
-	   var fr = this.getTranslation(chosenRequest, this.userLang, "fr");
-	   var de = this.getTranslation(chosenRequest, this.userLang, "de");
+	   var en = chosenRequest;
+
+	   var fr = this.getTranslation(chosenRequest, this.state.userLang, "fr");
+	   var de = this.getTranslation(chosenRequest, this.state.userLang, "de");
 
 	index = firebase.database().ref('tags').push({
     	     en: en, fr: fr, de: de
   	   });
         }
 
-     //firebase.database().ref('users/0/tags').push({ 
+     //firebase.database().ref('users/0').child(/tags').push({ 
 	//  index: index
      //});
   },
