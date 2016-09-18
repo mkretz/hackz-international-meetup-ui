@@ -21,12 +21,20 @@ var TagSelect = React.createClass({
       var key = tag['.key']
       return (
         <Chip
+          style={{margin:'5px'}}
           key={key}
-          onClick={(e) => this.props.router.push('/newevent/'+key)}
+          onClick={(e) => this.props.handleClick(key)}
         >{tag.en}</Chip>
       );
     }, this)
-    return (<div>{tagList}</div>)
+    return (
+      <div style={{margin:'50px'}}>
+        <h3>Available Tags</h3>
+        <div style={{display: 'flex', flexWrap: 'wrap'}}>
+          {tagList}
+        </div>
+      </div>
+    )
   }
 });
 
