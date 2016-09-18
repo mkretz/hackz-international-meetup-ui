@@ -12,19 +12,25 @@ var EventList = React.createClass({
   getInitialState: function() {
     return {
       events: [],
-      tags: []
+      tags: {}
     };
   },
   componentWillMount: function() {
-    this.bindAsArray(firebase.database().ref('tags'), 'tags');
+    firebase.database().ref('tags').once('value', function(tags) {
+      this.setState({tags: tags.val()})
+    }, this)
     this.bindAsArray(firebase.database().ref('events'), 'events');
   },
   render: function() {
+    if (this.state.tags.length == 0)
+     return
     var eventNodes = this.state.events.map(function(event) {
-        return (
-          <Event key={event.$id} {...event} tag={this.state.tags[event.tag].en} />
-        );
-      }, this);
+      var tag = this.state.tags[event.tag]
+      if (tag !== undefined)
+      {
+        return <Event{...event} key={event['.key']} tag={tag.en} />
+      }
+    }, this)
     return (
       <List>
         {eventNodes}

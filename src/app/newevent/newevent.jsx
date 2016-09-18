@@ -2,6 +2,9 @@ import React from 'react';
 import AutoCompleteTags from '../components/AutoCompleteTags.jsx';
 import TagCloud from '../components/TagCloud.jsx';
 
+import ReactFireMixin from 'reactfire'
+import firebase from 'firebase'
+
 import {TextField, TimePicker, DatePicker, RaisedButton} from 'material-ui'
 import { withRouter } from 'react-router'
 
@@ -9,30 +12,53 @@ const buttonStyle = {
   margin: 12,
 };
 
-const NewEvent = (props) =>
-    (
+var NewEvent = React.createClass({
+  mixins: [ReactFireMixin],
+  getInitialState: function() {
+    return {
+      place: undefined,
+      date: undefined,
+      time: undefined,
+      tag: this.props.params['tagID']
+    };
+  },
+  addEvent: function() {
+    var time = this.state.date
+    time.setHours(this.state.time.getHours())
+    time.setMinutes(this.state.time.getMinutes())
+    firebase.database().ref('events').push({place: this.state.place, tag: this.state.tag, time: time.getTime()/1000.})
+    this.props.router.push('/')
+  },
+  render: function() {
+    return (
         <div>
           <TextField
             hintText="Where ..."
+            onChange={(e) => this.setState({place: e.target.value})}
           />
-          <DatePicker hintText="Date ..." />
+          <DatePicker
+            hintText="Date ..."
+            autoOk={true}
+            onChange={(e, date) => this.setState({date: date})}
+          />
           <TimePicker
             format="24hr"
             hintText="Time ..."
+            autoOk={true}
+            onChange={(e, date) => this.setState({time: date})}
           />
-          <AutoCompleteTags />
-          <TagCloud />
 
           <RaisedButton
             label="Submit" primary={true} style={buttonStyle}
-            onClick={() => {props.router.push('/')}}
+            onClick={() => {this.addEvent()}}
           />
           <RaisedButton
             label="Cancel" secondary={true} style={buttonStyle}
-            onClick={() => {props.router.push('/')}}
+            onClick={() => {this.props.router.push('/')}}
           />
         </div>
-
-    );
+      )
+    }
+})
 
 export default withRouter(NewEvent);
