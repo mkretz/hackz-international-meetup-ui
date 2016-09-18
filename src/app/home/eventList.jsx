@@ -20,11 +20,11 @@ var EventList = React.createClass({
     firebase.database().ref('tags').once('value', function(tags) {
       this.setState({tags: tags.val()})
     }, this)
-    this.bindAsArray(firebase.database().ref('events'), 'events');
+    this.bindAsArray(firebase.database().ref('events').orderByChild('time'), 'events');
     this.bindAsArray(firebase.database().ref('users/0/tags'), 'userTags');
   },
   render: function() {
-    var eventNodes = this.state.events.map(function(event) {
+    var eventNodes = this.state.events.reverse().map(function(event) {
       var userTags = this.state.userTags.map((tag) => tag['.value'])
       if (userTags.indexOf(event.tag) === -1)
         return
