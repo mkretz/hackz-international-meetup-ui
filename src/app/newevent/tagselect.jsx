@@ -14,12 +14,11 @@ var TagSelect = React.createClass({
     };
   },
   componentWillMount: function() {
-    firebase.database().ref('tags').once('value', (data) => this.setState({tags: data.val()}), this);
+    this.bindAsArray(firebase.database().ref('tags'), 'tags');
   },
   render: function() {
     var tagList = this.state.tags.map(function (tag) {
       var key = tag['.key']
-      console.log(tag)
       return (
         <Chip
           key={key}

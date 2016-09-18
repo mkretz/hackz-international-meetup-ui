@@ -19,10 +19,6 @@ const AutoCompleteTags = React.createClass({
     this.bindAsObject(firebase.database().ref('users/0'), 'profile');
   },
 
-  mapAutomcompleteOptions: function () {
-    return _.map(this.state.tags,(tag) => {return {label: tag.en, value: tag}});
-  },
-
   alreadyUsed: function (tag) {
     return _.find(this.getProfileTags(),(profileTag) => profileTag === this.state.tags.indexOf(tag));
   },
@@ -34,15 +30,39 @@ const AutoCompleteTags = React.createClass({
   getProfileTags: function () {
     return (this.state.profile && this.state.profile.tags ? this.state.profile.tags : [])
   },
+  storeTag: function(chosenRequest, index) {// store tag to user profile + save new tags
+   if (index === -1){
+  	  var en = this.getTranslation(chosenRequest, this.userLang, "en");
+  	  var fr = this.getTranslation(chosenRequest, this.userLang, "fr");
+  	  var de = this.getTranslation(chosenRequest, this.userLang, "de");
+
+    	var ref = firebase.database().ref('tags').push({
+        	     en: en, fr: fr, de: de
+      	   });
+      index = ref['key']
+      firebase.database().ref('users/0/tags').push(index)
+      chosenRequest = ''
+    }
+    else {
+
+      var tag = this.state.tags[Object.keys(this.state.tags)[index]]['.key']
+
+      console.log(tag)
+      firebase.database().ref('users/0/tags').push(tag)
+    }
+
+  },
+  getTranslation: function(originalWord, oldLanguage, newLanguage ) {
+   return(originalWord)},
 
   render: function () {
     return (
         <div>
           <AutoComplete
               hintText="Tag ..."
-              dataSource={this.mapAutomcompleteOptions()}
-              dataSourceConfig={{text: 'label', value: 'value'}}
-	      onNewRequest={this.props.onNewRequest}
+              dataSource={this.state.tags}
+              dataSourceConfig={{text: 'en', value: '.key'}}
+	      onNewRequest={this.storeTag}
           />
         </div>
     );
