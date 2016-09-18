@@ -47,7 +47,6 @@ const ChipArray = React.createClass({
   },
 
   render: function () {
-    console.log(this.state.tags)
     return (
         <div style={{display: 'flex', flexWrap: 'wrap'}}>
           {this.state.profileTags.map(this.renderChip, this)}
