@@ -5,7 +5,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import EventList from './eventList.jsx';
 
-import { withRouter } from 'react-router'
+import { Link, withRouter } from 'react-router'
 
 
 var Home = React.createClass({
@@ -13,7 +13,6 @@ var Home = React.createClass({
     var lang = (this.props.params.lang !== undefined) ? this.props.params.lang : 'en'
     return (
       <div>
-          <h2>{lang}</h2>
           <FloatingActionButton
            style={{position: 'absolute', bottom:'50px', right:'50px'}}
            onClick={() => {this.props.router.push('/newevent')}}
@@ -22,6 +21,7 @@ var Home = React.createClass({
           </FloatingActionButton>
 
           <EventList lang={lang}/>
+          <Link to="/home/en">en</Link> | <Link to="/home/de">de</Link> | <Link to="/home/fr">fr</Link>
       </div>
     );
   }
