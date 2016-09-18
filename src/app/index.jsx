@@ -38,7 +38,7 @@ let routes = (
     <Route path="/" component={App}>
         <IndexRedirect to="/home"></IndexRedirect>
         <Route component={Navigation}>
-            <Route path="/home" component={Home}/>
+            <Route path="/home(/:lang)" component={Home}/>
             <Route path="/profile" component={Profile}/>
         </Route>
         <Route path="/newevent" component={NewEvent}/>

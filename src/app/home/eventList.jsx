@@ -31,7 +31,7 @@ var EventList = React.createClass({
       var tag = this.state.tags[event.tag]
       if (tag !== undefined)
       {
-        return <Event{...event} key={event['.key']} tag={tag.en} />
+        return <Event{...event} key={event['.key']} tag={tag[this.props.lang]} />
       }
     }, this)
     return (

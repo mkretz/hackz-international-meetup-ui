@@ -10,8 +10,10 @@ import { withRouter } from 'react-router'
 
 var Home = React.createClass({
   render: function() {
+    var lang = (this.props.params.lang !== undefined) ? this.props.params.lang : 'en'
     return (
       <div>
+          <h2>{lang}</h2>
           <FloatingActionButton
            style={{position: 'absolute', bottom:'50px', right:'50px'}}
            onClick={() => {this.props.router.push('/newevent')}}
@@ -19,7 +21,7 @@ var Home = React.createClass({
             <ContentAdd />
           </FloatingActionButton>
 
-          <EventList />
+          <EventList lang={lang}/>
       </div>
     );
   }
